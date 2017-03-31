@@ -29,7 +29,7 @@
     <%= yield %>
     <div class=" container text-center product-border">
       <div class="container">
-        <h3 style="font-size: 30px; font-family: 'Roboto Slab', serif; color: #666"><%= "Randomize" %></h3>
+        <h3 style="font-size: 30px; font-family: 'Roboto Slab', serif; color: #666"><%= "Randomize Product" %></h3>
         <%= image_tag("star.jpg") %>
       </div>
     </div>
@@ -49,7 +49,7 @@
     </div>
     <div class=" container text-center product-border">
       <div class="container">
-        <h3 style="font-size: 30px; font-family: 'Roboto Slab', serif; color: #666"><%= "New" %></h3>
+        <h3 style="font-size: 30px; font-family: 'Roboto Slab', serif; color: #666"><%= "New Product" %></h3>
         <%= image_tag("star.jpg") %>
       </div>
     </div>
@@ -68,11 +68,11 @@
       </div>
     </div>
       <div class="product-border">
-        <img src="assets/banner1.jpg" style="width: 100%;">
+        <%= image_tag "banner1.jpg" , style: "width: 100%" %>
       </div>
   </body>
   <footer>
-  <img src="https://maps.googleapis.com/maps/api/staticmap?center=20.9623325,105.776198&markers=color:red%7Clabel:C%7C20.9623325,105.776198&zoom=12&scale=2&size=1200x100&maptype=roadmap&key=AIzaSyDqmomkHQUQBKe4NK8iyHjwJry5RCXJjqo" style="width: 100%">
+  <img src="https://maps.googleapis.com/maps/api/staticmap?center=20.9623325,105.776198&markers=color:red%7Clabel:C%7C20.9623325,105.776198&zoom=12&scale=2&size=1200x100&maptype=roadmap&key=AIzaSyDqmomkHQUQBKe4NK8iyHjwJry5RCXJjqo" style="width: 100%" class="product-border">
     <%= render "layouts/footer" %>
   </footer>
 </html>
