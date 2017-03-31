@@ -63,8 +63,6 @@ gem "iconv", "~> 1.0.3"
 
 gem "groupdate"
 
-gem "chartkick"
-
 gem "jquery-turbolinks"
 
 gem "sidekiq"
