@@ -46,7 +46,6 @@ GEM
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.16.0)
-    chartkick (2.2.3)
     chatwork (0.4.1)
       faraday (~> 0.9)
     climate_control (0.1.0)
@@ -255,7 +254,6 @@ DEPENDENCIES
   bootstrap-kaminari-views
   byebug
   cancancan
-  chartkick
   chatwork
   coffee-rails (~> 4.2)
   config
