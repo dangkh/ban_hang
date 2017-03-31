@@ -1,0 +1,14 @@
+<div class="container">
+  <%= form_tag controller: :suggestions, method: :post do %>
+    <%= select("category", "id", @categories,
+      {prompt: t(:select_category)}) %>
+    <%= text_area_tag :description, params[:description],
+      class: "description-form form-control", placeholder: t(:description) %>
+    <%= submit_tag t(:submit), class: "btn btn-warning pull-right" %>
+  <% end %>
+</div>
+<div class="container">
+  <button class="btn btn-info pull-right">
+    <%= link_to t(:see_all), suggestions_path, id: "word-li" %>
+  </button>
+</div>

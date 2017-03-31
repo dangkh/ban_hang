@@ -1,0 +1,19 @@
+<div class="container">
+  <h1><%= t :list_cate %></h1>
+  <% @categories.each do |cate| %>
+    <div class="style-div-category-index">
+      <button class="btn btn-info btn-category-width">
+        <% if cate.name.present? %>
+          <h3>
+            <%= link_to cate.name, category_path(id: cate.id), id: "word-li" %>
+          </h3>
+        <% else %>
+          <h3>
+            <%= link_to t(:missing_name), category_path(id: cate.id),
+              id: "word-li" %>
+          </h3>
+        <% end %>
+      </button>
+    </div>
+  <% end %>
+</div>

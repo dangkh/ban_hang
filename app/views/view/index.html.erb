@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="container product-border">
+    <div class="text-center">
+      <h3><%= t :viewed %></h3>
+    </div>
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-2 random-width viewed-padding">
+          <%= link_to picture_for(product),
+            category_product_path(category_id: product.category_id, id: product.id) %>
+          <p class="name-product"><%= product.name %></p>
+          <p class="price-product">
+            <%= product.price %>
+            <i class="fa fa-dollar size-icon"></i>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

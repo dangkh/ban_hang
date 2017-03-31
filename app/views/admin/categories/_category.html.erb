@@ -1,0 +1,27 @@
+<tr>
+  <td>
+    <%= index_for category_counter, @categories.current_page,
+      params[:limit] %>
+  </td>
+  <td>
+    <% tmp = Category.find_by parent_id: category.id %>
+    <% if tmp.nil? %>
+      <%= link_to category.name, admin_category_products_url(category_id: category.id) %>
+    <% else %>
+      <%= category.name %>
+    <% end %>
+  </td>
+  <td><%= category.description %></td>
+  <td>
+    <%= link_to edit_admin_category_path(category),
+      class: "button-edit-category" do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to [:admin, category], method: :delete,
+      data: {confirm: t(:views_admin_categories_index_sure)} do %>
+      <i class="glyphicon glyphicon-trash"></i>
+    <% end %>
+  </td>
+</tr>

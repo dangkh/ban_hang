@@ -1,0 +1,55 @@
+<div class="container">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <%= link_to image_tag("0.png", class: "carousel-image"), root_path %>
+      </div>
+      <div class="item">
+        <%= link_to image_tag("1.png", class: "carousel-image"), root_path %>
+      </div>
+      <div class="item">
+        <%= link_to image_tag("2.png", class: "carousel-image"), root_path %>
+      </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only"><%= t :previous %></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only"><%= t :next %></span>
+    </a>
+  </div>
+</div>
+    <div class=" container text-center product-border">
+      <div class="container">
+        <img src="assets/icon-hot.png" style="display: inline-block;"height="42" width="42">
+        <br>
+        <%= image_tag("star.jpg") %>
+      </div>
+      <div class="container">
+        <div class="row text-center">
+          <% @products.each_with_index do |product, index| %>
+            <div class="col-sm-4">
+              <p><strong><%= product.name %></strong></p>
+              <%= link_to picture_for(product),
+                    category_product_path(category_id: product.category_id, id: product.id) %>
+                <p class="price-product"><%= product.price %>
+                  <i class="fa fa-dollar size-icon"></i>
+                </p>
+                <% @product_render = product %>
+                <% if !session[:cart].include?(product.id.to_s) %>
+                  <%= render "form_add_product" %>
+                <% else %>
+                  <%= render "form_remove_product" %>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>

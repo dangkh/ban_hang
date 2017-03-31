@@ -1,0 +1,31 @@
+<div class="container">
+  <h1><%= t :index_suggestion %></h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= t :id %></th>
+          <th><%= t :time %></th>
+          <th><%= t :description %></th>
+          <th><%= t :status %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @suggestions.each_with_index do |suggest, index| %>
+          <tr class="<%= index % 2 == 0 ? t(:info) : t(:success) %>">
+            <td>
+              <%= index_for index, @suggestions.current_page,
+                Settings.order.per_page %>
+            </td>
+            <td><%= link_to time_type(suggest.created_at),
+              suggestion_path(id: suggest.id) %>
+            </td>
+            <td><%= suggest.description %></td>
+            <td><%= suggest.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div><%= paginate @suggestions %></div>
+  </div>
+</div>

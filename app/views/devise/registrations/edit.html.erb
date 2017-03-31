@@ -1,0 +1,61 @@
+<h2>
+  <%= t(:views_devise_registration_edit_edit) %>
+  <%= resource_name.to_s.humanize %>
+</h2>
+
+<%= form_for resource, as: resource_name,
+  url: registration_path(resource_name), html: {method: :put} do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>
+      <%= t(:views_devise_registration_edit_waiting)
+        resource.unconfirmed_email %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %>
+    <i><%= t(:views_devise_registration_edit_leave) %></i>
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      
+      <em>
+        <%= @minimum_password_length
+          t(:views_devise_registration_edit_characters) %>
+      </em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %>
+    <i><%= t(:views_devise_registration_edit_confirm) %></i>
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t(:views_devise_registration_edit_update) %>
+  </div>
+<% end %>
+
+<h3><%= t(:views_devise_registration_edit_cancel) %></h3>
+
+<p>
+  <%= t(:views_devise_registration_edit_unhappy) %>
+  <%= button_to t(:views_devise_registration_edit_cancel),
+    registration_path(resource_name),
+    data: {confirm: t(:views_devise_registration_edit_sure)},
+    method: :delete %>
+</p>
+
+<%= link_to t(:views_devise_registration_edit_back), :back %>

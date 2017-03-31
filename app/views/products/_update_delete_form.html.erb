@@ -1,0 +1,14 @@
+<%= form_for :sessions, url: session_path, method: :patch do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.hidden_field :category_id, value: @product.category_id %>
+  <%= f.number_field :quantity, min: Settings.product.min_quantity,
+    max: @product.in_stock, value: Settings.product.min_quantity,
+    class: "form-control text-center" %>
+  <%= f.submit t(:update_cart), class: "btn btn-info
+    right-text stock-product-show" %>
+<% end %>
+<%= form_for :sessions, url: session_path(@product.id),
+  method: :delete do |f| %>
+  <%= f.submit t(:delete_cart), class: "btn btn-danger
+    right-text stock-product-show" %>
+<% end %>

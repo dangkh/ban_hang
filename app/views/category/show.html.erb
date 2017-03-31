@@ -1,0 +1,28 @@
+<div class="container">
+  <% @categories.each do |category| %>
+    <div class="container product-border">
+      <div class="text-center">
+        <% if category.products.any? %>
+          <h3>
+            <%= link_to category.name, category_products_path(category.id) %>
+          </h3>
+        <% else %>
+          <h3><%= category.name %></h3>
+        <% end %>
+      </div>
+      <div class="row">
+        <% category.products.each do |product| %>
+          <div class="col-md-2 random-width">
+            <%= link_to picture_for(product),
+              category_product_path(category_id: product.category_id,
+              id: product.id) %>
+            <p class="name-product"><%= product.name %></p>
+            <p class="price-product"><%= product.price %>
+              <i class="fa fa-dollar size-icon"></i>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+  <% if @category.name.nil? %>
+    <h3>
+      <%= link_to t(:missing_name),
+        admin_category_products_path(id: @category.id) %>
+    </h3>
+  <% else %>
+    <h3>
+      <%= link_to @category.name,
+        admin_category_products_path(id: @category.id) %>
+    </h3>
+  <% end %>
+  <%= form_tag @products_path, method: :get do %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <p>
+      <%= text_field_tag :search, params[:search], class: "form-control" %>
+      <%= submit_tag t(:search), name: nil, class: "btn btn-info pull-right" %>
+    </p>
+  <% end %>
+</div>
+<div class="container">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-2 random-width" id="product<%= product.id %>">
+        <%= link_to picture_for(product),
+          admin_category_product_path(category_id: product.category_id,
+          id: product.id) %>
+        <input type="checkbox" id="<%= product.id %>">
+        <p class="name-product">
+          <%= product.name %>
+        </p>
+        <p class="price-product">
+          <%= product.price %>
+          <i class="fa fa-dollar size-icon"></i>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div class="padding-table">
+    <div class="text-center"><%= paginate @products, theme: "twitter-bootstrap-3" %></div>
+    <button class="btn btn-danger pull-right">
+      <p id="delete-btn"><%= t :delete %></p>
+    </button>
+    <button class="btn btn-success pull-right">
+      <p id="delete-btn">
+        <%= link_to t(:add_new),
+          new_admin_category_product_url(category_id: @category.id), id: "word-li" %>
+      </p>
+    </button>
+    <div>
+      <%= form_tag import_admin_category_products_path(category_id: @category.id),
+        multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag t(:import_csv), class: "btn btn-warning" %>
+      <% end %>
+    </div>
+  </div>
+</div>

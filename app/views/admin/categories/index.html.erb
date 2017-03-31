@@ -1,0 +1,88 @@
+<% provide :title, t(:views_admin_categories_index_title) %>
+<div class="container">
+  <h3><%= t :views_admin_categories_index_title %></h3>
+  <div class="row">
+    <div class="search-form">
+      <%= search_form_for [:admin, @search], class: "form-inline" do |f| %>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.label:name_cont, t(:views_admin_categories_index_search) %>
+            <%= f.text_field :name_cont, class: "form-control" %>
+          </div>
+        </div>
+        <div class= "col-md-2" >
+          <%= f.submit t(:views_admin_categories_index_search),
+            class: "btn btn-primary" %>
+        </div>
+        <div class="pull-right">
+          <%= link_to t(".add_category"), "#category-modal", data: {toggle: "modal"},
+            class: "btn btn-primary btn-add-category" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <table class="table table-bordered table-hover text-center">
+    <tr>
+      <th class="text-center"><%= t :views_admin_categories_index_id %></th>
+      <th class="text-center"><%= t :views_admin_categories_index_name %></th>
+      <th class="text-center"><%= t :views_admin_categories_index_description %></th>
+    </tr>
+    <tr>
+      <%= render @categories %>
+    </tr>
+  </table>
+  <div class="text-center">
+    <%= paginate @categories, theme: "twitter-bootstrap-3" %>
+  </div>
+  <%= form_tag admin_categories_path , method: :post,
+    id: "add-category-form" do %>
+    <div id="category-modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3><%= t :views_admin_categories_index_create %></h3>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div>
+                <label><%= t :views_admin_categories_index_list_parent %></label>
+                <div>
+                  <%= render "list_category" %>
+                </div>
+              </div>
+              <div>
+                <label><%= t :views_admin_categories_index_name %></label>
+                <%= text_field_tag :name, params[:name], class: "form-control" %>
+              </div>
+              <div>
+                <label><%= t :views_admin_categories_index_description %></label>
+                <%= text_area_tag :description, params[:description],
+                  class: "form-control" %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <%= submit_tag t(:views_admin_categories_index_create),
+                class: "btn btn-primary"%>
+              <button type="submit" class="btn btn-danger"
+                data-dismiss="modal">
+                <%= t :views_admin_categories_index_cancel %>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="modal" id="category-modal-edit">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="submit" class="close" data-dismiss="modal">&times;</button>
+          <h3><%= t :edit_category %></h5>
+        </div>
+        <div class="edit-category-modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

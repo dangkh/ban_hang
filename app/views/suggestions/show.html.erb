@@ -1,0 +1,25 @@
+<div class="container">
+  <label for="comment"><%= t :category %></label>
+  <textarea class="form-control" rows="<%= Settings.suggestion.min_row %>"
+    id="comment">
+    <%= @category.name %>
+  </textarea>
+  <label for="comment" class="viewed-padding"><%= t :content %></label>
+  <textarea class="form-control" rows="<%= Settings.suggestion.max_row %>"
+    id="comment">
+    <%= @suggestion.description %>
+  </textarea>
+</div>
+<div class="container">
+  <button class="btn btn-info pull-right">
+    <%= link_to t(:see_all), suggestions_path, id: "word-li" %>
+  </button>
+  <button class="btn btn-danger">
+    <%= link_to t(:delete), suggestion_path(id: @suggestion.id),
+      id: "word-li", method: :delete %>
+  </button>
+  <button class="btn btn-warning pull-right">
+    <%= link_to t(:edit), edit_suggestion_path(id: @suggestion.id),
+      id: "word-li"%>
+  </button>
+</div>

@@ -1,0 +1,29 @@
+<tr>
+  <td>
+    <%= index_for suggest_product_counter, @suggest_products.current_page,
+      params[:limit] %>
+  </td>
+  <td><%= suggest_product.name %></td>
+  <td><%= suggest_product.description %></td>
+  <td><%= suggest_product.user.name %></td>
+  <td><%= suggest_product.category.name %></td>
+  <td>
+    <% if suggest_product.status == Settings.wait %>
+      <%= form_tag admin_suggest_product_path(suggest_product),
+        method: :put do %>
+        <div class="col-md-6 row">
+          <%= submit_tag t(:accept), class: "btn btn-success",
+            name: :accept, data: {confirm: t(:are_you_sure)} %>
+        </div>
+        <div class="col-md-3 row">
+          <%= submit_tag t(:cancel), class: "btn btn-danger",
+            name: :cancel, data: {confirm: t(:are_you_sure)} %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-md-3 pull-left">
+        <%= suggest_product.status %>
+      </div>
+    <% end %>
+  </td>
+</tr>

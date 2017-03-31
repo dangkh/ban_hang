@@ -1,0 +1,43 @@
+<div class="container">
+  <div id="hcontainer" data-chart="<%= @data %>"></div>
+</div>
+<div class="container product-border">
+  <div class="pull-right">
+    <button class="btn btn-warning">
+      <%= link_to t(:download_excel), admin_statistics_url(format: "xls"), id: "word-li" %>
+    </button>
+  </div>
+  <div class="table-responsive padding-table">
+    <table class="table table-width">
+      <thead>
+        <tr>
+          <th><%= t :image %></th>
+          <th><%= t :name_product %></th>
+          <th><%= t :sold_quantity %></th>
+          <th><%= t :price %></th>
+          <th><%= t :total_price %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product, quantity| %>
+          <tr>
+            <td><%= picture_for product %></td>
+            <td class="element-padding-showorder">
+              <%= product.name %>
+            </td>
+            <td class="element-padding-showorder">
+              <%= quantity %>
+            </td>
+            <td class="element-padding-showorder">
+              <%= product.price %>
+            </td>
+            <td class="element-padding-showorder">
+              <%= number_to_currency quantity * product.price %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="text-center"><%= paginate @products %></div>
+  </div>
+</div>

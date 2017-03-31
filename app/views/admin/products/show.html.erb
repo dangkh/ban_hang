@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <div><%= picture_for @product, "detail" %></div>
+      <button type="button" class="btn btn-info" data-toggle="collapse"
+        data-target="#demo"><%= t :describe %></button>
+      <div id="demo" class="collapse">
+        <%= @product.description %>
+      </div>
+    </div>
+    <div class="col-md-4 col-md-offset-3 border-product-detail">
+      <p class="name-product-detail name-product-show"><%= @product.name %></p>
+      <p class="price-product-detail price-product-show"><%= @product.price %>
+        <i class="fa fa-dollar size-icon"></i>
+      </p>
+      <div>
+        <p class="product-detail stock-product-show"><%= t :in_stock %></p>
+        <p class="product-detail pull-right"><%= @product.in_stock %></p>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-warning pull-right">
+      <%= link_to t(:edit), edit_admin_category_product_path(
+        category_id: @category.id, id: @product.id), id: "word-li" %>
+  </button>
+</div>

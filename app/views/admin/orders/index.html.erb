@@ -1,0 +1,50 @@
+<% provide :title, t(:orders) %>
+<div class="container-fluid">
+  <div class="col-md-offset-1">
+    <h3><%= t :orders %></h3>
+    <div class="search-form row">
+      <%= search_form_for [:admin, @search], class: "form-inline" do |f| %>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= f.label :status_cont, t(:search) %>
+            <%= f.text_field :status_cont, class: "form-control" %>
+          </div>
+        </div>
+        <div class= "col-md-2" >
+          <%= f.submit t(:search),
+            class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-9 col-md-offset-1">
+    <table class="table table-bordered table-hover text-center">
+      <tr>
+        <th class="text-center col-md-1"><%= t :index %></th>
+        <th class="text-center col-md-1"><%= t :total_price %></th>
+        <th class="text-center col-md-2"><%= t :status %></th>
+        <th class="text-center col-md-2"><%= t :order_date %></th>
+        <th class="text-center col-md-1"><%= t :edit %></th>
+      </tr>
+      <tr>
+        <%= render @orders %>
+      </tr>
+    </table>
+    <%= paginate @orders, theme: "twitter-bootstrap-3" %>
+  </div>
+</div>
+<div class="modal order-modal-edit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="submit" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3><%= t :edit_order %></h3>
+      </div>
+      <div class="modal-body-order-edit">
+
+      </div>
+    </div>
+  </div>
+</div>

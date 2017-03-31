@@ -1,0 +1,50 @@
+<div class="container">
+  <h1><%= t :index_order %></h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= t :id %></th>
+          <th><%= t :time %></th>
+          <th><%= t :price %></th>
+          <th><%= t :status %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each_with_index do |order, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= link_to time_type(order.created_at),
+              users_order_path(id: order.id) %>
+            </td>
+            <td><%= number_to_currency order.total_price %></td>
+            <td><%= order.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div><%= paginate @orders %></div>
+    <div class="table-padding-index">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= t :number_paid %></th>
+            <th><%= t :total_price %></th>
+            <th><p class="right-text"><%= t :order_completed %></p></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="info">
+            <td><%= @orders.size %></td>
+            <td><%= number_to_currency @total_price %></td>
+            <td>
+              <p class="right-text">
+                <%= @orders.select{|x| x.status == Settings.success}.size %>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

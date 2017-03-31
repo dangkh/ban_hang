@@ -1,0 +1,15 @@
+<% provide :title, t(:views_admin_users_index_title) %>
+<h3><%= t :views_admin_users_index_title %></h3>
+<table class="table table-bordered table-hover text-center">
+  <tr>
+    <th class="text-center"><%= t :views_admin_users_index_id %></th>
+    <th class="text-center"><%= t :views_admin_users_index_name %></th>
+    <th class="text-center"><%= t :views_admin_users_index_email %></th>
+    <th class="text-center"><%= t :views_admin_users_index_address %></th>
+  </tr>
+
+  <tr>
+    <%= render @users %>
+  </tr>
+</table>
+<%= paginate @users, theme: "twitter-bootstrap-3" %>

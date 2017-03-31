@@ -1,0 +1,64 @@
+<div class="container">
+  <h1><%= t :cart %></h1>
+  <%= form_tag @sessions_path, method: :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search], class: "form-control" %>
+      <%= submit_tag t(:search), name: nil, class: "btn btn-info pull-right" %>
+    </p>
+  <% end %>
+  <div class="table-responsive padding-table">
+    <table class="table table-width">
+      <thead>
+        <tr>
+          <th><%= t :image %></th>
+          <th><%= t :product %></th>
+          <th><%= t :quantity %></th>
+          <th><%= t :price %></th>
+          <th><%= t :delete %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product_quantity.each do |product, quantity| %>
+          <tr>
+            <td><%= picture_for product %></td>
+            <td class="element-padding-showorder">
+              <%= link_to product.name,
+                category_product_path(category_id: product.category_id,
+                id: product.id) %>
+            </td>
+            <td class="element-padding-showorder">
+              <div class="form-group">
+                <input type="number" class="form-control text-center"
+                  id="<%= product.id %>" min="<%= Settings.product.min_quantity %>"
+                  max="<%= product.in_stock %>" value="<%= quantity %>">
+              </div>
+            </td>
+            <td class="element-padding-showorder">
+              <p id="price<%= product.id %>">
+                <%= number_to_currency quantity.to_i * product.price %>
+              </p>
+            </td>
+            <td>
+              <%= form_for :sessions, url: session_path(id: product.id),
+                method: :delete do |f| %>
+                <%= f.submit t(:delete_cart),
+                  class: "btn btn-danger btn-delete-cart" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="total-padding-showorder">
+    <p class="name-product total-diplay-showorder">
+      <%= t :total_price_in_cart %>
+    </p>
+    <div class="price-product right-text">
+      <p id="total_price"><%= number_to_currency session[:total_price] %></p>
+      <button class="btn btn-warning">
+        <%= link_to t(:order), users_orders_path, method: :post, id: "word-li" %>
+      </button>
+    </div>
+  </div>
+</div>

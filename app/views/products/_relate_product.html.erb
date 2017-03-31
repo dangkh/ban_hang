@@ -1,0 +1,21 @@
+
+<div class=" container text-center product-border">
+      <div class="container">
+        <h3 style="font-size: 30px; font-family: 'Roboto Slab', serif; color: #666"><%= "Relate product" %></h3>
+        <%= image_tag("star.jpg") %>
+      </div>
+    </div>
+      <div class="container">
+        <div class="row">
+          <% @supports.relate.each do |product| %>
+            <div class="col-md-2 random-width">
+              <%= link_to picture_for(product),
+                category_product_path(category_id: product.category_id, id: product.id) %>
+              <p class="name-product"><%= product.name %></p>
+              <p class="price-product"><%= product.price %>
+                <i class="fa fa-dollar size-icon"></i>
+              </p>
+            </div>
+          <% end %>
+      </div>
+    </div>

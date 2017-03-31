@@ -1,0 +1,30 @@
+<tr>
+  <td>
+    <%= index_for order_counter, @orders.current_page,
+      params[:limit] %>
+  </td>
+  <td><%= order.total_price %></td>
+  <td>
+    <% unless order.status == "success" %>
+      <%= form_tag admin_order_path(order), method: :put do %>  
+        <div class="col-md-8 row">
+          <%= select_tag :status, options_for_select(Order.statuses.keys, order.status.to_s)%>
+        </div>
+        <div class="col-md-3 row">
+          <%= submit_tag t(:update), class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-md-3 pull-left">
+        <%= t :success %>
+      </div>
+    <% end %>
+  </td>
+  <td><%= order.created_at.strftime("%H:%M:%S %d/%m/%Y") %>
+  <td>
+    <%= link_to edit_admin_order_path(order),
+      class: "button-edit-order" do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+  </td>
+</tr>

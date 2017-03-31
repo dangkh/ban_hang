@@ -1,0 +1,32 @@
+<div class="container">
+  <h3>
+    <%= link_to @category.name, category_products_path(id: @category.id) %>
+  </h3>
+  <%= form_tag @products_path, method: :get do %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <p>
+      <%= text_field_tag :search, params[:search], class: "form-control" %>
+      <%= submit_tag t(:search), name: nil, class: "btn btn-info pull-right" %>
+    </p>
+  <% end %>
+</div>
+<div class="container">
+  <p class="order-display"><%= t :order %></p>
+  <p class="order-display"><%= sortable "name" %></p>
+  <p class="order-display"><%= sortable "price" %></p>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-2 random-width">
+        <%= link_to picture_for(product),
+          category_product_path(category_id: product.category_id,
+          id: product.id) %>
+        <p class="name-product"><%= product.name %></p>
+        <p class="price-product"><%= product.price %>
+          <i class="fa fa-dollar size-icon"></i>
+        </p>
+      </div>
+    <% end %>
+    <div class="text-center"><%= paginate @products %></div>
+  </div>
+</div>

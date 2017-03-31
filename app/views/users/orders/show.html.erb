@@ -1,0 +1,30 @@
+<div class="container">
+  <h1><%= t :paid %></h1>
+  <div class="table-responsive">
+    <table class="table table-width">
+      <thead>
+        <tr>
+          <th><%= t :image %></th>
+          <th><%= t :product %></th>
+          <th><%= t :quantity %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product_quantity.each do |product, quantity| %>
+          <tr>
+            <td><%= picture_for product %></td>
+            <td class="element-padding-showorder"><%= product.name %></td>
+            <td class="element-padding-showorder"><%= quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="total-padding-showorder">
+    <p class="name-product total-diplay-showorder"><%= t :total_price %></p>
+    <p class="price-product right-text">
+      <%= number_to_currency @order.total_price %>
+      <i class="fa fa-dollar size-icon"></i>
+    </p>
+  </div>
+</div>

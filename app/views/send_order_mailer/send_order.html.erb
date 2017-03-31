@@ -1,0 +1,46 @@
+<h1><%= t :title_email %></h1>
+<h3><%= t :order_noti_email%></h3>
+<div class="container">
+  <div class="table-responsive padding-table">
+    <table class="table table-width">
+      <thead>
+        <tr>
+          <th><%= t :product %></th>
+          <th><%= t :quantity %></th>
+          <th><%= t :price %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% total_price = 0 %>
+        <% @product_quantity.each do |product, quantity| %>
+          <tr>
+            <td class="element-padding-showorder">
+              <%= product.name %>
+            </td>
+            <td class="element-padding-showorder">
+              <%= quantity %>
+            </td>
+            <td class="element-padding-showorder">
+              <p id="price<%= product.id %>">
+                <%= number_to_currency quantity.to_i * product.price %>
+                <%= total_price += quantity.to_i * product.price %>
+              </p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="total-padding-showorder">
+    <p class="name-product total-diplay-showorder">
+      <%= t :total_price_in_cart %>
+    </p>
+    <div class="price-product right-text">
+      <p id="total_price"><%= number_to_currency total_price %></p>
+    </div>
+  </div>
+</div>
+
+<p>
+  <%= t :hi %><%= @user.name %><%= t :body_email %>
+</p>

@@ -1,0 +1,18 @@
+<tr>
+  <td>
+    <%= index_for user_counter, @users.current_page,
+      params[:limit] %>
+  </td>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td><%= user.address %></td>
+  <td><%= user.orders.success.size %></td>
+  <td>
+    <%= link_to [:admin, user], method: :delete,
+      data: {confirm: t(:views_admin_users_index_sure)} do %>
+      <i class="glyphicon glyphicon-trash">
+        <%= t :views_admin_users_index_delete %>
+      </i>
+    <% end %>
+  </td>
+</tr>

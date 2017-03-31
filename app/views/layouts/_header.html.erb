@@ -1,0 +1,127 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="row color-nav">
+    <div class="col-md-7" >
+      <h3 class="page-title"><%= link_to t(:title), root_path, id: "word-li" %></h3>
+    </div>
+    <div class="col-md-4" >
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-right">
+            <button type="button" class="btn btn-info btn-sm btn-sign" id="menu1"
+              data-toggle="dropdown">
+              <span class="glyphicon glyphicon-user"></span> <%= t :user %>
+            </button>
+            <ul class="dropdown-menu text-center">
+              <li>
+                <%= link_to t(:setting_title), edit_user_registration_path %>
+              </li>
+              <li class="divider"></li>
+              <li><%= link_to t(:view_layout_header_logout),
+                destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </ul>
+          <% if current_user.admin? %>
+            <ul class="nav navbar-nav navbar-right">
+              <button type="button" class="btn btn-info btn-sm btn-sign menu-manage"
+                id="menu2" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-wrench"></span> <%= t :manage %>
+              </button>
+              <ul class="dropdown-menu text-center">
+                <li>
+                  <%= link_to t(:categories), admin_categories_path %>
+                </li>
+                <li>
+                  <%= link_to t(:orders), admin_orders_path %>
+                </li>
+                <li>
+                  <%= link_to t(:suggest_products), admin_suggest_products_path %>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to t(:statistics), admin_statistics_path %>
+                </li>
+              </ul>
+            </ul>
+          <% else %>
+
+          <% end %>
+        <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <button type="button" class="btn btn-info btn-sm btn-sign" id="menu1"
+            data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span> <%= t :user %>
+          </button>
+          <ul class="dropdown-menu text-center">
+            <li>
+              <%= link_to t(:view_layout_header_login), new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to t(:sign_up), new_user_registration_path %>
+            </li>
+            <li class="divider"></li>
+            <li><%= link_to t(:view_layout_header_facebook),
+              user_facebook_omniauth_authorize_path %>
+            </li>
+          </ul>
+        </ul>
+        <% end %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to t(:viewed), view_index_path, id: "word-li" %></li>
+              <li><%= link_to t(:cart), sessions_path, id: "word-li" %></li>
+              <li><%= link_to t(:order), users_orders_path, id: "word-li" %></li>
+            </ul>
+    </div>
+  </div>
+</nav>
+<div class="container padding-nav">
+  <div class="row">
+    <div class="col-md-2">
+      <h1 class="header-logo"><%= t :logo %></h1>
+    </div>
+    <ul class="list-group">
+      <li>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="navbar-form navbar-left">
+            <%= form_tag index_path, method: :get do %>
+              <%= hidden_field_tag :direction, params[:direction] %>
+              <%= hidden_field_tag :sort, params[:sort] %>
+              <%= text_field_tag :search, params[:search],
+                class: "form-control form-width my-form", placeholder: t(:search) %>
+              <%= submit_tag t(:search), name: nil, class: "btn btn-default my-form" %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="col-md-6 col-md-offset-2 padding-menu">
+          <ul class="nav navbar-nav menu-nav">
+            <li class="menu-width">
+              <%= link_to t(:home), root_path, id: "word-li" %>
+            </li>
+            <li class="menu-width">
+              <%= link_to t(:category), category_index_path, id: "word-li" %>
+              <div class="dropdown-content">
+                <% @parent_category.each_with_index do |parent_category, index| %>
+                  <div class="nav-column">
+                    <h3><%= parent_category.name %></h3>
+                    <% @child_category[index].each do |category| %>
+                      <p>
+                        <%= link_to category.name, category_products_path(category_id: category.id) %>
+                      </p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </li>
+            <li class="menu-width">
+              <%= link_to t(:news), about_path, id: "word-li" %>
+            </li>
+            <li class="menu-width">
+              <%= link_to t(:about), about_path, id: "word-li" %>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

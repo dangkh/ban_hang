@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title><%= t :views_layouts_application_title %></title>
+    <%= stylesheet_link_tag    "application", media: "all",
+      "data-turbolinks-track": true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": true %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+    <%= csrf_meta_tags %>
+    <%= render "layouts/header" %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+    <link href="//fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Annie Use Your Telescope" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <%= yield %>
+    <div class=" container text-center product-border">
+      <div class="container">
+        <h3 style="font-size: 30px; font-family: 'Roboto Slab', serif; color: #666"><%= "Randomize" %></h3>
+        <%= image_tag("star.jpg") %>
+      </div>
+    </div>
+      <div class="container">
+        <div class="row">
+          <% @randomize.each do |product| %>
+            <div class="col-md-2 random-width">
+              <%= link_to picture_for(product),
+                category_product_path(category_id: product.category_id, id: product.id) %>
+              <p class="name-product"><%= product.name %></p>
+              <p class="price-product"><%= product.price %>
+                <i class="fa fa-dollar size-icon"></i>
+              </p>
+            </div>
+          <% end %>
+      </div>
+    </div>
+    <div class=" container text-center product-border">
+      <div class="container">
+        <h3 style="font-size: 30px; font-family: 'Roboto Slab', serif; color: #666"><%= "New" %></h3>
+        <%= image_tag("star.jpg") %>
+      </div>
+    </div>
+      <div class="container">
+        <div class="row">
+          <% @news.each do |product| %>
+            <div class="col-md-2 random-width">
+              <%= link_to picture_for(product),
+                category_product_path(category_id: product.category_id, id: product.id) %>
+              <p class="name-product"><%= product.name %></p>
+              <p class="price-product"><%= product.price %>
+                <i class="fa fa-dollar size-icon"></i>
+              </p>
+            </div>
+          <% end %>
+      </div>
+    </div>
+      <div class="product-border">
+        <img src="assets/banner1.jpg" style="width: 100%;">
+      </div>
+  </body>
+  <footer>
+  <img src="https://maps.googleapis.com/maps/api/staticmap?center=20.9623325,105.776198&markers=color:red%7Clabel:C%7C20.9623325,105.776198&zoom=12&scale=2&size=1200x100&maptype=roadmap&key=AIzaSyDqmomkHQUQBKe4NK8iyHjwJry5RCXJjqo" style="width: 100%">
+    <%= render "layouts/footer" %>
+  </footer>
+</html>

@@ -1,0 +1,7 @@
+<div class="container">
+  <%= form_for @suggestion, url: suggestion_path, method: :put do |f| %>
+    <%= f.select "category_id", @categories %>
+    <%= f.text_area :description, class: "description-form form-control" %>
+    <%= f.submit t(:update), class: "btn btn-warning pull-right" %>
+  <% end %>
+</div>

@@ -1,0 +1,39 @@
+small: "64x64"
+medium: "100x100"
+large: "200x200"
+user:
+  per_page: 10
+product:
+  take_rand: 5
+  showed_number: 20
+  per_page: 10
+  per_page_home: 30
+  take_home: 3
+  min_quantity: 1
+  to_csv: ["id", "name", "quantity", "price", "total_price"]
+menu:
+  ancestor_number: 4
+  child_number: 5
+category_id:
+  parent: 0
+activity_time_format: "%H:%M:%S %d/%m/%Y"
+viewed:
+  number_product: 15
+order:
+  per_page: 10
+  new: 0
+success: "success"
+rating:
+  number_star: 5
+money: "%.2f"
+ajax: "ajax"
+suggestion:
+  inital_status: 0
+  size: 10
+  leng_description: 5000
+  one_line: 150
+  min_row: 1
+  max_row: 5
+default_value: 0
+error_number: 400
+wait: "wait"

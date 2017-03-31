@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <div><%= picture_for @product, "detail" %></div>
+      <button type="button" class="btn btn-info" data-toggle="collapse"
+        data-target="#demo"><%= t :describe %></button>
+      <div id="demo" class="collapse">
+        <%= @product.description %>
+      </div>
+    </div>
+    <div class="col-md-4 border-product-detail">
+      <p class="name-product-detail name-product-show"><%= @product.name %></p>
+      <p class="price-product-detail price-product-show"><%= @product.price %>
+        <i class="fa fa-dollar size-icon"></i>
+      </p>
+      <div>
+        <p class="product-detail stock-product-show"><%= t :in_stock %></p>
+        <p class="product-detail right-text"><%= @product.in_stock %></p>
+      </div>
+      <p class="product-detail rate-product-show"><%= t :rate %></p>
+      <% if @supports.rating.present? %>
+        <div class="rating-number-show" id="<%= @supports.rating.id %>">
+          <% Settings.rating.number_star.times do |x| %>
+            <% if @supports.rating.rate == x+1 %>
+              <p class="rating" id="number-rating-select"><%= x+1 %></p>
+            <% else %>
+              <p class="rating" id="number-rating"><%= x+1 %></p>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="rating-number-show" id="0">
+          <% Settings.rating.number_star.times do |x| %>
+            <p class="rating" id="number-rating">
+              <%= link_to x+1, ratings_path(rate: x+1, product_id: @product.id),
+                method: :post %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+      <br>
+      <div class="right-text"><%= social_share_button_tag @product.name %></div>
+      <% if validate_product @product.id %>
+        <%= form_for :sessions, url: sessions_path do |f| %>
+          <%= f.hidden_field :product_id, value: @product.id %>
+          <%= f.hidden_field :category_id, value: @product.category_id %>
+          <%= f.number_field :quantity, min: Settings.product.min_quantity,
+            max: @product.in_stock, value: Settings.product.min_quantity,
+            class: "form-control text-center form-number-input" %>
+          <%= f.submit t(:cart), class: "btn btn-info
+            right-text stock-product-show" %>
+        <% end %>
+      <% end %>
+      <% if session[@product.id].present? %>
+        <%= render "update_delete_form" %>
+      <% end %>
+    </div>
+    <div class="col-md-3 col-md-offset-1 border-product-detail">
+      <div class="padding-hot">
+        <% if @supports.hot.present? %>
+          <div class="text-center">
+            <h3><%= t :hot %></h3>
+          </div>
+          <%= link_to picture_for(@supports.hot),
+            category_product_path(category_id: @supports.hot.category_id,
+            id: @supports.hot.id) %>
+          <p class="name-product"><%= @supports.hot.name %></p>
+          <p class="price-product"><%= @supports.hot.price %>
+            <i class="fa fa-dollar size-icon"></i>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-md-9" id="comments">
+    <%= render @comments %>
+  </div>
+  <div class="col-md-9">
+    <% if user_signed_in? %>
+      <h2><%= t :comment %></h2>
+      <%= form_for [@product, @product.comments.new],
+        method: :post, remote: true do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit t(:comment), class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= t :login_comment %>
+    <% end %>
+  </div>
+</div>
+<%= render "relate_product" %>

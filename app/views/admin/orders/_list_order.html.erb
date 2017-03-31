@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <b><%= t :order_id %><%= @order.id %></b>
+  <% unless order.status == "success" %>
+    <%= form_tag admin_order_path(order), method: :put do %>  
+      <div class="col-md-4 row">
+        <%= t :status %>
+        <%= select_tag :status, options_for_select(Order.statuses.keys,
+          order.status.to_s)%>
+      </div>
+      <div class="col-md-3 row">
+        <%= submit_tag t(:update), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% end %>
+  <table class="table">
+    <tr>
+      <td><%= t :product %></td>
+      <td><%= t :quatity %></td>
+      <td><%= t :in_stock %></td>
+      <% unless order.status == "success" %>
+        <td><%= t :enough_to_sell %>
+      <% end %>
+    </tr>
+    <% @order_details.each_with_index do |order_detail, id| %>
+      <tr>
+        <td><%= get_product(products, id).name %></td>
+        <td><%= order_detail.quantity %></td>
+        <td><%= get_product(products, id).in_stock %></td>
+        <% unless order.status == "success" %>
+          <td>
+            <% if order_detail.quantity < 
+              get_product(products, id).in_stock %>
+              <i class="glyphicon glyphicon-ok"></i>
+            <% else %>
+              <i class="glyphicon glyphicon-remove"></i>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,7 @@
+<%= form_for :sessions, url: sessions_path do |f| %>
+  <%= f.hidden_field :product_id, value: @product_render.id %>
+  <%= f.hidden_field :category_id, value: @product_render.category_id %>
+  <%= f.button(class: "btn btn-default") do  %>
+    <i class="fa fa-shopping-cart" aria-hidden="true">Add to cart</i>
+  <% end %>
+<% end %>

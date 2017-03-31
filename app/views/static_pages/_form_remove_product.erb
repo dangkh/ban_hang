@@ -1,0 +1,5 @@
+<%= form_for :sessions, url: session_path(id: @product_render.id), method: :delete do |f| %>
+  <%= f.button(class: "btn btn-default") do  %>
+    <i class="fa fa-shopping-cart" aria-hidden="true">Remove cart</i>
+  <% end %>
+<% end %>

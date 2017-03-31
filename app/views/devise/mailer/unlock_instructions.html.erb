@@ -1,0 +1,5 @@
+<p><%= t(:views_devise_mailer_unlock_hello) @resource.email %></p>
+<p><%= t(:views_devise_mailer_unlock_locked) %></p>
+<p><%= t(:views_devise_mailer_unlock_click) %></p>
+<p><%= link_to t(:views_devise_mailer_unlock_unlock),
+  unlock_url(@resource, unlock_token: @token) %></p>
