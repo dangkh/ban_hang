@@ -7,25 +7,6 @@ User.create! name: "kieudang", email: "kieudang@gmail.com",
 User.create! name: "user", email: "user@gmail.com",
   phone: "9876543210", address: "123 KeangNam", avatar: nil,
   password: "123456", password_confirmation: "123456", role: 1
-100.times{
-  name = Faker::Name.name
-  email = Faker::Internet.email
-  phone = Faker::PhoneNumber.phone_number
-  address = Faker::Address.street_address
-  password = "123456"
-  user = User.create! name: name, email: email, phone: phone, address: address,
-    password: password, password_confirmation: password, avatar: nil
-  order1 = Order.create! status: 1, total_price: "10", user_id: user.id
-  order0 = Order.create! status: 0, total_price: "10", user_id: user.id
-  2.times do |n|
-    OrderDetail.create! quantity: 5, order_id: order0.id, product_id: n + 1
-    OrderDetail.create! quantity: 6, order_id: order1.id, product_id: n + 1
-  end
-  3.times do |n|
-    SuggestProduct.create! name: name, description: name, status: n,
-      user_id: user.id, category_id: n + 1
-  end
-}
 
 big_cate = ["Clothes, Shoes", "Computer", "TV", "Personal stuff"]
 big_cate.each do |stuff,index|
