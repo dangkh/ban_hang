@@ -13,7 +13,7 @@ class Admin::StatisticsController < ApplicationController
     @products.each do |product, quantity|
       @data.append [product.name, quantity]
     end
-    StatisticsWorker.perform_at 1.minutes.from_now
+    StatisticsWorker.perform_at load_time
     @products = Kaminari.paginate_array(@products).page(params[:page])
       .per Settings.product.per_page
   end
