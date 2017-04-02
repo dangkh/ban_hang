@@ -1,5 +1,13 @@
 <div class="container">
-  <div id="hcontainer" data-chart="<%= @data %>"></div>
+  <div class="row">
+    <div style="width: 50%" class="col-md-5">
+      <div id="hcontainer" data-chart="<%= @data %>"></div>
+    </div>
+    <div style="width: 50%; display: inline-block;">
+      <div id="hhcontainer" data-chart="<%= @data %>"></div>
+    </div>
+  </div>
+
 </div>
 <div class="container product-border">
   <div class="pull-right">

@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     session[:total_price] = 0 if session[:total_price].nil?
     if @product.present?
       quantity = session_params[:quantity].nil? ? 1 : session_params[:quantity].to_i
-      if session[:cart].include?(session_params[:product_id])
+      if session[:cart].present? && session[:cart].include?(session_params[:product_id])
         flash[:warning] = "That product is exist in your cart"
         redirect_to :back
       else
