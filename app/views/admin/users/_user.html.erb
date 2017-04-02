@@ -7,6 +7,7 @@
   <td><%= user.email %></td>
   <td><%= user.address %></td>
   <td><%= user.orders.success.size %></td>
+  <td><%= user.role %></td>
   <td>
     <%= link_to [:admin, user], method: :delete,
       data: {confirm: t(:views_admin_users_index_sure)} do %>
