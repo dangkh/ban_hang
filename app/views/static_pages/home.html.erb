@@ -43,7 +43,7 @@
                   <i class="fa fa-dollar size-icon"></i>
                 </p>
                 <% @product_render = product %>
-                <% if !session[:cart].include?(product.id.to_s) %>
+                <% if session[:cart].nil? || !session[:cart].include?(product.id.to_s) %>
                   <%= render "form_add_product" %>
                 <% else %>
                   <%= render "form_remove_product" %>
