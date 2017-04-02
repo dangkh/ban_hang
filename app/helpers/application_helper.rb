@@ -13,8 +13,9 @@ module ApplicationHelper
   end
 
   def sortable column
+    css_class = column == sort_column ? "#{sort_direction}" : nil
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-    link_to column, sort: column, direction: direction
+    link_to column, {sort: column, direction: direction}, {class: css_class}
   end
 
   def validate_product product_id
