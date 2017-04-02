@@ -10,8 +10,25 @@ class Admin::StatisticsController < ApplicationController
       format.xls
     end
     @data = Array.new
+    tmp = Array.new
     @products.each do |product, quantity|
       @data.append [product.name, quantity]
+      tmp.append [product.category_id, quantity]
+    end
+    tmp.sort!()
+    data_tmp = Array.new
+    tmp.each do |category_id, quantity|
+      if data_tmp.present? && category_id == data_tmp.last.first.id
+          data_tmp.last[1] += quantity
+        else
+          tmp_category = Category.find_by id: category_id
+          data_tmp.append [tmp_category, quantity]
+      end
+    end
+    data_tmp.sort{|a,b| b[1] <=> a[1]}.take(7)
+    @data1 = Array.new
+    data_tmp.each do |category, quantity|
+      @data1.append [category.name, quantity]
     end
     StatisticsWorker.perform_at load_time
     @products = Kaminari.paginate_array(@products).page(params[:page])
