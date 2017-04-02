@@ -5,7 +5,7 @@ class Admin::UsersController < ApplicationController
   def index
     params[:limit] = Settings.user.per_page
     @users = User.includes(:orders)
-      .select(:id, :name, :email, :address).page(params[:page])
+      .select(:id, :name, :email, :address, :role).page(params[:page])
       .per params[:limit]
   end
 
