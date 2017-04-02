@@ -51,7 +51,7 @@
             right-text stock-product-show" %>
         <% end %>
       <% end %>
-      <% if session[@product.id].present? %>
+      <% if session[@product.id].present? && session[:cart].present? %>
         <%= render "update_delete_form" %>
       <% end %>
     </div>

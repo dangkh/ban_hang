@@ -49,3 +49,34 @@
     <div class="text-center"><%= paginate @products %></div>
   </div>
 </div>
+<div class="container product-border">
+  <div class="row">
+    <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center"><%= link_to "User created order by time", admin_users_path %></div>
+      <div class="panel-body">
+        <%= render partial: "user1", collection: @user1s %>
+      </div>
+    </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">User order by order number </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th><%= t :email %></th>
+                <th><%= t :price %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "user2", collection: @user2s %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
