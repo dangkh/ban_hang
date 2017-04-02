@@ -33,6 +33,13 @@ class Admin::StatisticsController < ApplicationController
     StatisticsWorker.perform_at load_time
     @products = Kaminari.paginate_array(@products).page(params[:page])
       .per Settings.product.per_page
+    @user1s = User.all.order(created_at: :desc).take(10)
+    tmp = Order.group(:user_id).sum(:total_price).take(10)
+    @user2s = Array.new
+    tmp.each do |id, sum|
+      user_tmp = User.find_by id: id
+      @user2s.append [user_tmp, sum]
+    end
   end
 
   private

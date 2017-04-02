@@ -19,8 +19,10 @@ module ApplicationHelper
   end
 
   def validate_product product_id
-    @product.in_stock.present? && @product.in_stock > 0 &&
-      session[@product.id].nil? ? true : false
+    tmp = @product.in_stock.present? && @product.in_stock > 0 ? true : false
+    return true if session[:cart].nil? && tmp == true
+    return session[@product.id].nil? && tmp == true ? true : false
+    true
   end
 
   def time_type time
