@@ -1,0 +1,2 @@
+class PostAdmin < ApplicationRecord
+end

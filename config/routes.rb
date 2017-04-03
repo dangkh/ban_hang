@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   get "/home", to: "static_pages#home"
   get "/about", to: "static_pages#about"
   get "/index", to: "static_pages#index"
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     end
     resources :statistics, only: [:index]
     resources :suggest_products
+    resources :post_admins
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
   resources :view, only: [:index]

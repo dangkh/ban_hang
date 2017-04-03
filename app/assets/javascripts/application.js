@@ -16,6 +16,8 @@
 //= require turbolinks
 //= require social-share-button
 //= require_tree .
+//= require ckeditor/init
+
 
 $(document).ready(function(){
   setTimeout(function(){
