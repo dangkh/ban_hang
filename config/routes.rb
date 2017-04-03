@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   get "/home", to: "static_pages#home"
   get "/about", to: "static_pages#about"
   get "/index", to: "static_pages#index"
