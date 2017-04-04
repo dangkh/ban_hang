@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   if ($(".body-post").length > 0){
     var $post = $( ".post" ),
     str = $(".body-post").text()

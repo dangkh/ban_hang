@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <%= post_admin.id %>
+  </td>
+  <td>
+    <%= link_to post_admin.title, post_admin_url(id: post_admin.id)%>
+  </td>
+  <td>
+    <%= link_to edit_post_admin_url(post_admin) do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to post_admin, method: :delete,
+      data: {confirm: t(:views_admin_categories_index_sure)} do %>
+      <i class="glyphicon glyphicon-trash"></i>
+    <% end %>
+  </td>
+</tr>

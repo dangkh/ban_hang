@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   if ($("#hcontainer").length > 0){
     var data_chart = $("#hcontainer").data("chart");
     Highcharts.chart('hcontainer', {

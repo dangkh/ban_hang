@@ -26,7 +26,6 @@ Rails.application.routes.draw do
     end
     resources :statistics, only: [:index]
     resources :suggest_products
-    resources :post_admins
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
   resources :view, only: [:index]
@@ -34,6 +33,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create, :show]
   end
   resources :ratings, only: [:create, :update]
+  resources :post_admins
   resources :suggestions
   get "*path", to: "static_pages#home"
 end
