@@ -1,9 +1,13 @@
 <div class="container">
   <div class="row">
     <% @pictures.each do |picture| %>
-      <div class="col-md-2 random-width">
+      <div class="col-md-2 random-width" id="picture<%= picture.id %>">
         <%= picture_for(picture) %>
+        <input type="checkbox" id="<%= picture.id %>">
       </div>
     <% end %>
   </div>
+  <button class="btn btn-danger pull-right" style="height: 38px">
+    <p id="delete-pic"><%= t(:delete)%></p>
+  </button>
 </div>

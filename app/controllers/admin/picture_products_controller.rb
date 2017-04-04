@@ -1,5 +1,6 @@
 class Admin::PictureProductsController < ApplicationController
   before_action :verify_admin, :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   def new
     @product = Product.find_by id: params[:product_id]
@@ -20,6 +21,8 @@ class Admin::PictureProductsController < ApplicationController
   end
 
   def destroy
+    @picture = PictureProduct.find_by id: params[:id]
+    @picture.destroy
   end
 
   def index
