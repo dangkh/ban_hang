@@ -1,9 +1,8 @@
 <div class="container">
-  <%= form_for [:admin, @picture_product],
+  <%= form_for [:admin, @category, @product, @picture_product],
     html: {multipart: true} do |f| %>
     <div class="row">
       <div class="col-md-4">
-        <%= f.hidden_field :product_id, value: @product.id %>
         <%= f.label :image %>
         <%= f.file_field :image %>
       </div>

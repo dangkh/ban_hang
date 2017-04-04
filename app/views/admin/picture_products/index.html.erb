@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <% @pictures.each do |picture| %>
+      <div class="col-md-2 random-width">
+        <%= picture_for(picture) %>
+      </div>
+    <% end %>
+  </div>
+</div>

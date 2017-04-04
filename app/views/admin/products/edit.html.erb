@@ -5,9 +5,10 @@
       <div class="col-md-4">
         <%= f.label :image %>
         <%= f.file_field :image %>
-        <%= link_to "See all picture", admin_picture_products_path, class: "btn btn-primary" %>
-        <%= link_to "Add more picture", new_admin_picture_product_path(id: @product.id),
-          class: "btn btn-primary" %>
+        <%= link_to "See all picture", admin_category_product_picture_products_path(
+          category_id: @category.id, product_id: @product.id), class: "btn btn-primary" %>
+        <%= link_to "Add more picture", new_admin_category_product_picture_product_path(
+            category_id: @category.id, product_id: @product.id), class: "btn btn-primary" %>
         <br>
         <%= f.label :describe %>
         <%= f.text_field :description, placeholder: @product.description,

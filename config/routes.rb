@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :orders
-    resources :picture_products
     resources :categories do
       resources :products do
+        resources :picture_products
         collection{post :import}
       end
     end

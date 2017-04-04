@@ -2,7 +2,8 @@ class Admin::PictureProductsController < ApplicationController
   before_action :verify_admin, :authenticate_user!
 
   def new
-    @product = Product.find_by id: params[:id]
+    @product = Product.find_by id: params[:product_id]
+    @category = @product.category
     @picture_product = PictureProduct.new
   end
 
@@ -22,7 +23,7 @@ class Admin::PictureProductsController < ApplicationController
   end
 
   def index
-    @picture = PictureProduct.find_by product_id: params[:id]
+    @pictures = PictureProduct.select{|pic| pic.product_id == params[:product_id]}
   end
 
   private
