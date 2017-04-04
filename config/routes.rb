@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :orders
+    resources :picture_products
     resources :categories do
       resources :products do
         collection{post :import}

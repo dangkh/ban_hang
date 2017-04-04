@@ -5,6 +5,9 @@
       <div class="col-md-4">
         <%= f.label :image %>
         <%= f.file_field :image %>
+        <%= link_to "Add more picture", new_admin_picture_product_path(id: @product.id),
+          class: "btn btn-primary" %>
+        <br>
         <%= f.label :describe %>
         <%= f.text_field :description, placeholder: @product.description,
           id: "description", class: "form-control" %>
