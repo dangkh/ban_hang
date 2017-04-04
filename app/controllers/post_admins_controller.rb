@@ -1,6 +1,6 @@
 class PostAdminsController < ApplicationController
-  before_action :verify_admin, execpt: [:show]
-  before_action :authenticate_user!, execpt: [:show]
+  before_action :verify_admin, except: [:show]
+  before_action :authenticate_user!, except: [:show]
 
   def index
     @posts = PostAdmin.all
