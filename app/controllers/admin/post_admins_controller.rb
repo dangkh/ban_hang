@@ -39,6 +39,17 @@ class Admin::PostAdminsController < ApplicationController
     @post = PostAdmin.find_by id: params[:id]
   end
 
+  def destroy
+    @post = PostAdmin.find_by id: params[:id]
+    if @post.destroy
+      flash[:success] = "Save Successed"
+      redirect_to admin_post_admins_url
+    else
+      flash[:success] = "Save Successed"
+      redirect_to admin_post_admins_url
+    end
+  end
+
 private
 
   def post_admin_params
