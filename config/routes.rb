@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :categories do
       resources :products do
+        resources :picture_products
         collection{post :import}
       end
     end

@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :comments
   has_many :order_details, dependent: :destroy
+  has_many :picture_products, dependent: :destroy
   has_attached_file :image, styles: {small: Settings.small,
     medium: Settings.medium, large: Settings.large}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
