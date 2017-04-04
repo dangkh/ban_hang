@@ -10,7 +10,13 @@ class Admin::PostAdminsController < ApplicationController
 
   def create
     tmp = PostAdmin.new post_admin_params
-    redirect_to root_path
+    if tmp.save
+      flash[:success] = "Save Successed"
+      redirect_to admin_post_admins_url
+    else
+      flash[:warning] = "Save Failed"
+      redirect_to admin_post_admins_url
+    end
   end
 
   def show
