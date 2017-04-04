@@ -3,6 +3,7 @@ class Admin::PostAdminsController < ApplicationController
   before_action :verify_admin, :authenticate_user!
 
   def index
+    @posts = PostAdmin.all
   end
 
   def new
@@ -20,6 +21,7 @@ class Admin::PostAdminsController < ApplicationController
   end
 
   def show
+    @post = PostAdmin.find_by id: params[:id]
   end
 
 private
