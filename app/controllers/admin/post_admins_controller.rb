@@ -6,6 +6,21 @@ class Admin::PostAdminsController < ApplicationController
     @posts = PostAdmin.all
   end
 
+  def update
+    post = PostAdmin.find_by id: params[:id]
+    if post.update_attributes post_admin_params
+        flash[:success] = "Update Successed"
+        redirect_to admin_post_admins_url
+    else
+        flash[:warning] = "Update Failed"
+        redirect_to admin_post_admins_url
+    end
+  end
+
+  def edit
+    @post_admin = PostAdmin.find_by id: params[:id]
+  end
+
   def new
   end
 
