@@ -5,6 +5,7 @@
       <div class="col-md-4">
         <%= f.label :image %>
         <%= f.file_field :image %>
+        <%= link_to "See all picture", admin_picture_products_path, class: "btn btn-primary" %>
         <%= link_to "Add more picture", new_admin_picture_product_path(id: @product.id),
           class: "btn btn-primary" %>
         <br>

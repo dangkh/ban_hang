@@ -22,6 +22,7 @@ class Admin::PictureProductsController < ApplicationController
   end
 
   def index
+    @picture = PictureProduct.find_by product_id: params[:id]
   end
 
   private
