@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     resources :comments
   end
   namespace :admin do
-    resources :post_admins
     resources :users
     resources :orders
     resources :categories do
@@ -34,6 +33,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create, :show]
   end
   resources :ratings, only: [:create, :update]
+  resources :post_admins
   resources :suggestions
   get "*path", to: "static_pages#home"
 end
