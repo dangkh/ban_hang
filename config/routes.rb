@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   namespace :admin do
+    resources :post_admins
     resources :users
     resources :orders
     resources :categories do
@@ -26,7 +27,6 @@ Rails.application.routes.draw do
     end
     resources :statistics, only: [:index]
     resources :suggest_products
-    resources :post_admins
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
   resources :view, only: [:index]

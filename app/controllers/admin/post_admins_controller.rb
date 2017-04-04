@@ -1,5 +1,4 @@
 class Admin::PostAdminsController < ApplicationController
-  load_and_authorize_resource
   before_action :verify_admin, :authenticate_user!
 
   def index
@@ -37,6 +36,10 @@ class Admin::PostAdminsController < ApplicationController
 
   def show
     @post = PostAdmin.find_by id: params[:id]
+    if @post.nil?
+      flash[:warning] = "Not exist"
+      redirect_to root_path
+    end
   end
 
   def destroy
