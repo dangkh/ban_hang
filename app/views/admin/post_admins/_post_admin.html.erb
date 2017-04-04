@@ -1,4 +1,17 @@
-<li>
-  <%= post_admin.id %>
-  <%= link_to post_admin.title, admin_post_admin_url(id: post_admin.id), id: "test1" %>
-</li>
+<tr>
+  <td>
+    <%= post_admin.id %>
+  </td>
+  <td>
+    <%= link_to post_admin.title, admin_post_admin_url(id: post_admin.id)%>
+  </td>
+  <td>
+    <%= link_to edit_admin_category_path(category),
+      class: "button-edit-category" do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+  </td>
+  <td>
+    <%= post_admin.id %>
+  </td>
+</tr>
