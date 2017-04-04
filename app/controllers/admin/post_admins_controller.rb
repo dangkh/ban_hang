@@ -9,9 +9,16 @@ class Admin::PostAdminsController < ApplicationController
   end
 
   def create
+    tmp = PostAdmin.new post_admin_params
+    redirect_to root_path
   end
 
   def show
   end
 
+private
+
+  def post_admin_params
+    params.require(:post_admin).permit :body, :title
+  end
 end
