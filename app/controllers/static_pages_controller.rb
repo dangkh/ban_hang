@@ -14,6 +14,6 @@ class StaticPagesController < ApplicationController
 
   def news
     @posts = PostAdmin.all
-    @hot_post = PostAdmin.last
+    @hot_posts = PostAdmin.all.take(2)
   end
 end
