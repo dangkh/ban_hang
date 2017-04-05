@@ -1,7 +1,34 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 text-center">
-      <div><%= picture_for @product, "detail" %></div>
+
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 400px">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <% @pictures.each_with_index do |pic,index| %>
+        <li data-target="#myCarousel" data-slide-to="<%= index+1 %>"></li>
+      <% end %>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <%= image_tag @product.image %>
+      </div>
+      <% @pictures.each do |pic| %>
+        <div class="item">
+          <%= image_tag pic.image %>
+        </div>
+      <% end %>
+    </div>
+    <a href="#myCarousel" role="button" data-slide="prev">
+      <span aria-hidden="true"></span>
+      <span class="sr-only"><%= t :previous %></span>
+    </a>
+    <a href="#myCarousel" role="button" data-slide="next">
+      <span aria-hidden="true"></span>
+      <span class="sr-only"><%= t :next %></span>
+    </a>
+  </div>
       <button type="button" class="btn btn-info" data-toggle="collapse"
         data-target="#demo"><%= t :describe %></button>
       <div id="demo" class="collapse">

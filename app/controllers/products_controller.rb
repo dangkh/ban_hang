@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.get_product_by_category params[:id], @category
+    @pictures = PictureProduct.select{|x| x.product_id.to_i == @product.id }.take(3)
     if @product.nil?
       flash[:danger] = t :not_exist_data
       redirect_to home_path
