@@ -11,4 +11,9 @@ class StaticPagesController < ApplicationController
     @products = Kaminari.paginate_array(@products)
       .page(params[:page]).per Settings.product.per_page_home
   end
+
+  def news
+    @posts = PostAdmin.all
+    @hot_post = PostAdmin.last
+  end
 end
